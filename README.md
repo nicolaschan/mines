@@ -11,6 +11,7 @@ Multiplayer minesweeper in your web browser. The author hosts the game at [mines
 # Screenshots
 
 ![completed game](https://i.imgur.com/UwoO1sY.png)
+![animation](https://i.imgur.com/QkAYidE.gif)
 ![in progress game](https://i.imgur.com/iF2rXpe.png)
 ![win](https://i.imgur.com/t1d1rcW.png)
 ![lose](https://i.imgur.com/YGL3uE7.png)
