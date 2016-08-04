@@ -1,0 +1,9 @@
+{
+  "port": 8081,
+  "board": {
+    "width": 8,
+    "height": 8,
+    "mines": 10
+  },
+  "password": "this is my very very long password kthxbye"
+}

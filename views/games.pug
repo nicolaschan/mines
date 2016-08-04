@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='google', content='notranslate')
+    meta(http-equiv='Content-Language', content='en')
+    link(rel='icon', type='image/png', href='/favicon.png')
+    link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Roboto+Mono')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+    link(rel='stylesheet', type='text/css', href='/materialize.min.css')
+    link(rel='stylesheet', type='text/css', href='/style.css')
+    script(src='/jquery.min.js')
+    script(src='/js.cookie.js')
+    script(src='/socket.io.js')
+    script(src='/materialize.min.js')
+    //script(src='/games.js')
+    title Select Game
+  body
+    .container
+      h1 Select a game
+      a(href='/new') or create a new one
+      table.highlight
+        thead
+          tr
+            th Game Name
+            th Dimensions
+            th Players
+            th Link
+        tbody
+          each game, gameId in Games.getAvailableGames()
+            tr
+              td= game.name
+              td= game.getBoard().width + ' by ' + game.getBoard().height + ' with ' + game.getBoard().mines + ' mines'
+              td= game.numberOfConnectedPlayers() + ' playing'
+              td
+                a(href='/?g=' + game.gameId)= '?g=' + game.gameId
+

@@ -1,0 +1,20 @@
+#board {
+	width: 832px;
+	margin: 20px auto;
+}
+
+.square {
+	width: 50px;
+	height: 50px;
+	background-color: #aaaaaa;
+	border: 1px solid white;
+	border-radius: 5px;
+	display: block;
+	float: left;
+	text-align: center;
+	font-size: 32px;
+	font-family: 'Roboto Mono', monospace;
+	margin: 1px;
+	cursor: default;
+	transition: border-color 0.4s ease, background-color 0.4s ease;
+}

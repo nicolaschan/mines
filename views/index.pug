@@ -1,0 +1,92 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(name='google', content='notranslate')
+		meta(http-equiv='Content-Language', content='en')
+		link(rel='icon', type='image/png', href='/favicon.png')
+		link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Roboto+Mono')
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+		link(rel='stylesheet', type='text/css', href='/materialize.min.css')
+		link(rel='stylesheet', type='text/css', href='/style.css')
+		script(src='/jquery.min.js')
+		script(src='/js.cookie.js')
+		script(src='/socket.io.js')
+		script(src='/materialize.min.js')
+		script(src='/client.js')
+		title Multiplayer Mines
+	body
+		.row
+			.row#boardRow
+				#board
+			.container
+				.row
+					h5#username Connecting...
+					input.with-gap#revealMode(type='radio', name='mode', checked)
+					label(for='revealMode') Reveal
+					br
+					input.with-gap#flagMode(type='radio', name='mode')
+					label(for='flagMode') Flag
+					br
+					br
+					#scoreboard
+					br
+					br
+					p Current dimensions are 
+						span#currentDimensions
+						span#flagCount
+					p Next dimensions will be 
+						span#nextDimensions
+		.fixed-action-btn.vertical(style="bottom: 45px; right: 24px;")
+			a.btn-floating.btn-large.grey.tooltipped.waves-effect.modal-trigger(data-position='left', data-delay='50', data-tooltip='Board size', id='new-game-button', data-target='newGameModal')
+				i.large.material-icons games
+			ul
+				li
+					a.btn-floating.red.tooltipped.waves-effect.modal-trigger(data-position='left', data-delay='50', data-tooltip='Settings', id='settings-button', data-target='settingsModal')
+						i.material-icons settings
+				li
+					a.btn-floating.green.tooltipped.waves-effect(data-position='left', data-delay='50', data-tooltip='Change game', href='/games')
+						i.material-icons add
+				li
+					a.btn-floating.blue.tooltipped.waves-effect.modal-trigger(data-position='left', data-delay='50', data-tooltip='Share', id='share-button', data-target='shareModal')
+						i.material-icons share
+		.modal#newGameModal
+			.modal-content
+				h4 Change Game Size
+				.container
+					.input-field
+						input(type='number', id='width', min='1', max='48')
+						label(for='width') Width
+					.input-field
+						input(type='number', id='height', min='1', max='48')
+						label(for='height') Height
+					.input-field
+						input(type='number', id='mines', min='0', max='2300')
+						label(for='mines') Number of Mines
+			.modal-footer
+				a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#')#submitSize Submit
+				a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#') Cancel
+		.modal#settingsModal
+			.modal-content
+				h4 Settings
+				.container
+					.input-field
+						i.material-icons.prefix timer
+						input(type='number', id='delay', min='0', max='20')
+						label(for='delay') Delay between square reveals (ms)
+			.modal-footer
+				a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#') Done
+		.modal#shareModal
+			.modal-content
+				h4 Share game with others
+				.container
+					.input-field
+						i.material-icons.prefix label
+						input(type='text', id='name', value='Unnamed game', maxlength='20')
+						label(for='name') Game name
+					.input-field
+						input(type='checkbox', id='public')
+						label(for='public') Show on publically game list
+			.modal-footer
+				a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#')#submitShare Done
+
