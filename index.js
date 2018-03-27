@@ -169,7 +169,7 @@ app.get('/js.cookie.js', (req, res) => {
   res.sendFile(__dirname + '/node_modules/js-cookie/src/js.cookie.js');
 });
 app.get('/socket.io.js', (req, res) => {
-  res.sendFile(__dirname + '/node_modules/socket.io-client/socket.io.js');
+  res.sendFile(__dirname + '/node_modules/socket.io-client/dist/socket.io.js');
 });
 app.get('/jquery.min.js', (req, res) => {
   res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.min.js');
