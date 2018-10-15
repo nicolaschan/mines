@@ -1,5 +1,5 @@
 # mines
-Multiplayer minesweeper in your web browser. The author hosts the game at [mines.nicolaschan.com](https://mines.nicolaschan.com).
+Multiplayer minesweeper in your web browser. The author hosts the game at [mines.nicolaschan.com](https://mines.nicolaschan.com) (not always available).
 
 # Features
 - Multiplayer and real time updating
