@@ -194,7 +194,7 @@ var updateSquaresWithDelay = function (squares) {
   if (getPreferences().delay == 0)
     return updateSquares(squares);
 
-  var delay = 5;
+  var delay = 1;
   if (getPreferences().delay)
     delay = getPreferences().delay;
 
