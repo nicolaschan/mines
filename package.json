@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "uglify": "uglifyjs js/client.js > js/uglified.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nicolas Chan",
@@ -21,12 +22,12 @@
     "js-base64": "^2.1.9",
     "js-cookie": "^2.1.2",
     "log4js": "^0.6.38",
-    "materialize-css": "^0.97.6",
+    "materialize-css": "^1.0.0",
     "pug": "^2.0.0-beta3",
     "randomcolor": "^0.4.4",
     "shortid": "^2.2.6",
     "shuffle-array": "^1.0.0",
     "shuffle-seed": "^1.1.5",
-    "socket.io": "^1.4.8"
+    "socket.io": "^2.2.0"
   }
 }

@@ -22,11 +22,13 @@ html
 			.container
 				.row
 					h5#username Connecting...
-					input.with-gap#revealMode(type='radio', name='mode', checked)
-					label(for='revealMode') Reveal
+					label
+						input.with-gap#revealMode(type='radio', name='mode', checked)
+						span Reveal
 					br
-					input.with-gap#flagMode(type='radio', name='mode')
-					label(for='flagMode') Flag
+					label
+						input.with-gap#flagMode(type='radio', name='mode')
+						span Flag
 					br
 					br
 					#scoreboard
@@ -38,7 +40,7 @@ html
 					p Next dimensions will be 
 						span#nextDimensions
 		.fixed-action-btn.vertical(style="bottom: 45px; right: 24px;")
-			a.btn-floating.btn-large.grey.tooltipped.waves-effect.modal-trigger(data-position='left', data-delay='50', data-tooltip='Board size', id='new-game-button', data-target='newGameModal')
+			a.btn.btn-floating.btn-large.grey.tooltipped.waves-effect.modal-trigger(data-position='left', data-delay='50', data-tooltip='Board size', id='new-game-button', data-target='newGameModal')
 				i.large.material-icons games
 			ul
 				li
@@ -64,8 +66,8 @@ html
 						input(type='number', id='mines', min='0', max='2300')
 						label(for='mines') Number of Mines
 			.modal-footer
-				a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#')#submitSize Submit
 				a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#') Cancel
+				a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#')#submitSize Submit
 		.modal#settingsModal
 			.modal-content
 				h4 Settings

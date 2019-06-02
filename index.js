@@ -133,8 +133,8 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('mouse in', (coord) => {});
-  socket.on('mouse out', (coord) => {});
+  socket.on('mouse in', (coord) => { });
+  socket.on('mouse out', (coord) => { });
 });
 
 app.set('view engine', 'pug');
