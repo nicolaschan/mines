@@ -8,6 +8,28 @@ Multiplayer minesweeper in your web browser. The author hosts the game at [mines
 - Multiple "rooms" available for private games
 - Flags available (of course!)
 
+# Installation
+
+You can edit `config.json` to adjust the port. You should also change the secret password to be something secret you make up (it is used to verify the integrity of usernames to prevent users from using arbitrary usernames).
+
+It will be running on [http://localhost:8080](http://localhost:8080) by default.
+
+## With node and npm
+```bash
+git clone https://github.com/nicolaschan/mines.git
+cd mines
+npm install
+npm start
+```
+
+## With Docker
+```bash
+git clone https://github.com/nicolaschan/mines.git
+cd mines
+docker build -t mines .
+docker run -d -p 8080:8080 mines
+```
+
 # Screenshots
 
 ![completed game](https://i.imgur.com/UwoO1sY.png)
