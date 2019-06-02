@@ -250,10 +250,18 @@ socket.on('lose', function (info) {
   var loser = info.loser;
   var squares = info.squares;
   updateSquares(squares);
-  M.toast(loser + ' hit a mine!', 5000, 'red');
+  M.toast({
+    html: escape(loser) + ' hit a mine!',
+    displayLength: 5000,
+    classes: 'red'
+  });
 });
 socket.on('win', function (winners) {
-  M.toast(winners + ' won the game!', 5000, 'green');
+  M.toast({
+    html: escape(winners) + ' won the game!',
+    displayLength: 5000,
+    classes: 'green'
+  });
 });
 socket.on('reconnect', register);
 
