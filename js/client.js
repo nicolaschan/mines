@@ -94,12 +94,12 @@ socket.on('board', function (board_data) {
   var adjustBoardSizeToFit = function () {
     var smallestSideLength = Math.min($(window).height(), $(window).width());
     var squareSize = (smallestSideLength - 80) / Math.max(board_data.dimensions.width, board_data.dimensions.height);
-    // Full square width is squareSize + (squareSize / 50) * 2 for margin + 2 for border
-    $('#board').css('width', (squareSize + ((squareSize / 50) * 2) + 2) * board_data.dimensions.width);
+    var marginSize = Math.max(1, Math.floor(squareSize / 50));
+    $('#board').css('width', (squareSize + (marginSize * 2)) * board_data.dimensions.width);
     $('.square').css('width', squareSize);
     $('.square').css('height', squareSize);
     $('.square').css('borderRadius', squareSize / 10);
-    $('.square').css('margin', squareSize / 50);
+    $('.square').css('margin', marginSize);
     $('.square').css('fontSize', squareSize * 0.64);
   };
   $(window).on('load resize', adjustBoardSizeToFit);
