@@ -116,8 +116,10 @@ io.on('connection', (socket) => {
     Games.removeUnoccupiedGames();
   });
   socket.on('next dimensions', (dimensions) => {
-    game.setNextDimensions(dimensions);
-    io.to(game.gameId).emit('next dimensions', game.getNextDimensions());
+    if (dimensions.width > 0 && dimensions.height > 0 && dimensions.width <= 40 && dimensions.height <= 40) {
+      game.setNextDimensions(dimensions);
+      io.to(game.gameId).emit('next dimensions', game.getNextDimensions());
+    }
   });
   socket.on('share game', (shareData) => {
     if (game == defaultGame)
