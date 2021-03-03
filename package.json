@@ -23,7 +23,7 @@
     "js-cookie": "^2.1.2",
     "log4js": "^0.6.38",
     "materialize-css": "^1.0.0",
-    "pug": "^2.0.0-beta3",
+    "pug": "^3.0.1",
     "randomcolor": "^0.4.4",
     "shortid": "^2.2.6",
     "shuffle-array": "^1.0.0",
