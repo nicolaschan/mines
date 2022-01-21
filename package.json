@@ -21,7 +21,7 @@
     "jquery": "^3.0.0",
     "js-base64": "^2.1.9",
     "js-cookie": "^2.1.2",
-    "log4js": "^0.6.38",
+    "log4js": "^6.4.0",
     "materialize-css": "^1.0.0",
     "pug": "^2.0.0-beta3",
     "randomcolor": "^0.4.4",
