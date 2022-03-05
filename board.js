@@ -192,15 +192,19 @@ Board.prototype.mineCount = function(x, y) {
  * @param  {number} x x-coordinate of the square to reveal
  * @param  {number} y y-coordinate of the square to reveal
  * @param {string} [username] username of the person that revealed the square
+ * @param {boolean} true if this reveal was initiated by a user clicking the square
+ * 					as opposed to a recursive call to reveal more 0s
+ * 					if this is true and the square is flagged, no changes are made
  * @return {Array<Object>}   Array of squares that have been changed
  */
-Board.prototype.reveal = function(x, y, username) {
+Board.prototype.reveal = function(x, y, username, firstClick) {
 	if (!this.generated) {
 		this.generate(x, y);
 		username = 'default';
 	}
 
-	if (this.squares[x][y].revealed)
+	// Prevent users from erroneously clicking a flagged mine
+	if (this.squares[x][y].revealed || (firstClick && this.squares[x][y].flagged))
 		return [];
 
 	this.squares[x][y].revealed = true;
@@ -232,7 +236,7 @@ Board.prototype.reveal = function(x, y, username) {
 	if (this.squares[x][y].count === 0 && !this.squares[x][y].mine) {
 		var adjacentSquares = this.getAdjacentSquares(x, y);
 		for (let i in adjacentSquares)
-			changedSquares = changedSquares.concat(this.reveal(adjacentSquares[i].x, adjacentSquares[i].y, username));
+			changedSquares = changedSquares.concat(this.reveal(adjacentSquares[i].x, adjacentSquares[i].y, username, false));
 	}
 
 	return changedSquares;

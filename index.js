@@ -73,11 +73,11 @@ io.on('connection', (socket) => {
   });
 
 
-  socket.on('reveal', (coord) => {
+  socket.on('reveal', (args) => {
     if (game.resetting)
       return;
 
-    io.to(game.gameId).emit('squares', game.reveal(coord.x, coord.y, username));
+    io.to(game.gameId).emit('squares', game.reveal(args.x, args.y, username, args.firstClick));
     io.to(game.gameId).emit('flag count', game.getBoard().flagCount);
     io.to(game.gameId).emit('players', game.getPlayers());
 

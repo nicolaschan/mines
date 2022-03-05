@@ -107,11 +107,11 @@ Game.prototype.getBoard = function() {
   return this.board;
 };
 
-Game.prototype.reveal = function(x, y, username) {
+Game.prototype.reveal = function(x, y, username, firstClick) {
   if (this.resetting)
     return [];
 
-  var revealedSquares = this.board.reveal(x, y, username);
+  var revealedSquares = this.board.reveal(x, y, username, firstClick);
 
   if (!this.board.lost)
     for (let i in revealedSquares)
