@@ -71,7 +71,8 @@ socket.on('board', function (board_data) {
         if (isCurrentlyRevealMode())
           socket.emit('reveal', {
             x: parseInt($(this).prop('id').split('-')[0]),
-            y: parseInt($(this).prop('id').split('-')[1])
+            y: parseInt($(this).prop('id').split('-')[1]),
+            firstClick: true
           });
         else
           socket.emit('flag', {
