@@ -72,15 +72,7 @@ io.on('connection', (socket) => {
     }]);
   });
 
-
-  socket.on('reveal', (coord) => {
-    if (game.resetting)
-      return;
-
-    io.to(game.gameId).emit('squares', game.reveal(coord.x, coord.y, username));
-    io.to(game.gameId).emit('flag count', game.getBoard().flagCount);
-    io.to(game.gameId).emit('players', game.getPlayers());
-
+  function handleGameEnding() {
     if (game.getBoard().lost) io.to(game.gameId).emit('lose', {
       loser: username,
       squares: game.getBoard().getRemainingSquares()
@@ -102,7 +94,30 @@ io.on('connection', (socket) => {
         io.to(game.gameId).emit('flag count', game.getBoard().flagCount);
       }, 5000);
     }
+  }
+
+  socket.on('reveal', (coord) => {
+    if (game.resetting)
+      return;
+
+    io.to(game.gameId).emit('squares', game.reveal(coord.x, coord.y, username));
+    io.to(game.gameId).emit('flag count', game.getBoard().flagCount);
+    io.to(game.gameId).emit('players', game.getPlayers());
+
+    handleGameEnding();
   });
+
+  socket.on('chord reveal', (coord) => {
+    if (game.resetting)
+      return;
+
+    io.to(game.gameId).emit('squares', game.chordReveal(coord.x, coord.y, username));
+    io.to(game.gameId).emit('flag count', game.getBoard().flagCount);
+    io.to(game.gameId).emit('players', game.getPlayers());
+
+    handleGameEnding();
+  });
+
   socket.on('flag', (coord) => {
     game.toggleFlag(coord.x, coord.y);
     io.to(game.gameId).emit('flag count', game.getBoard().flagCount);

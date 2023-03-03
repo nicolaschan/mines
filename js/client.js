@@ -65,7 +65,10 @@ socket.on('board', function (board_data) {
   $('#currentDimensions').text(dimensionsToString(board_data.dimensions));
 
   function chordReveal(x, y) {
-    // TODO: implement chord reveal
+    socket.emit('chord reveal', {
+      x: x,
+      y: y
+    })
   }
 
   var modified_squares = [];

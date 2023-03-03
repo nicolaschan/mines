@@ -121,6 +121,20 @@ Game.prototype.reveal = function(x, y, username) {
   return revealedSquares;
 };
 
+Game.prototype.chordReveal = function(x, y, username) {
+  if (this.resetting)
+    return [];
+
+  var revealedSquares = this.board.chordReveal(x, y, username);
+
+  if (!this.board.lost)
+    for (let i in revealedSquares)
+      if (revealedSquares[i].revealedBy == username)
+        this.players[username].points++;
+  
+  return revealedSquares;
+};
+
 Game.prototype.toggleFlag = function(x, y) {
   if (this.resetting)
     return;

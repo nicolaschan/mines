@@ -241,6 +241,34 @@ Board.prototype.reveal = function(x, y, username) {
 	return changedSquares;
 };
 
+Board.prototype.chordReveal = function(x, y, username) {
+	if (!this.squares[x] || !this.squares[x][y])
+		return [];
+	
+	if (!this.generated)
+		return [];
+
+	if (!this.squares[x][y].revealed)
+		return [];
+
+	var adjacentSquares = this.getAdjacentSquares(x, y);
+	var numFlaggedSquares = adjacentSquares.filter(function(square) {
+		return square.flagged;
+	}).length;
+	
+	if (numFlaggedSquares != this.squares[x][y].count)
+		return [];
+	
+	var squaresToReveal = adjacentSquares.filter(function(square) {
+		return !square.revealed && !square.flagged;
+	});
+	var changedSquares = [];
+	for (let i in squaresToReveal)
+		changedSquares = changedSquares.concat(this.reveal(squaresToReveal[i].x, squaresToReveal[i].y, username));
+	
+	return changedSquares;
+};
+
 Board.prototype.toggleFlag = function(x, y) {
 	if (this.squares[x][y].revealed)
 		return;
