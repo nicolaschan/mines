@@ -208,6 +208,7 @@ Board.prototype.reveal = function(x, y, username) {
 
 	this.squares[x][y].revealed = true;
 	this.squares[x][y].revealedBy = username;
+	this.squares[x][y].flagged = false;
 
 	this.reveals.push({
 		x: x,
