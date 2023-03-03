@@ -65,15 +65,7 @@ socket.on('board', function (board_data) {
   $('#currentDimensions').text(dimensionsToString(board_data.dimensions));
 
   function chordReveal(x, y) {
-    socket.emit('reveal', { x: x, y: y });
-    socket.emit('reveal', { x: x - 1, y: y - 1 });
-    socket.emit('reveal', { x: x - 1, y: y });
-    socket.emit('reveal', { x: x - 1, y: y + 1 });
-    socket.emit('reveal', { x: x, y: y - 1 });
-    socket.emit('reveal', { x: x, y: y + 1 });
-    socket.emit('reveal', { x: x + 1, y: y - 1 });
-    socket.emit('reveal', { x: x + 1, y: y });
-    socket.emit('reveal', { x: x + 1, y: y + 1 });
+    // TODO: implement chord reveal
   }
 
   var modified_squares = [];
