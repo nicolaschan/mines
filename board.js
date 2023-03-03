@@ -195,6 +195,9 @@ Board.prototype.mineCount = function(x, y) {
  * @return {Array<Object>}   Array of squares that have been changed
  */
 Board.prototype.reveal = function(x, y, username) {
+	if (!this.squares[x] || !this.squares[x][y])
+		return [];
+
 	if (!this.generated) {
 		this.generate(x, y);
 		username = 'default';

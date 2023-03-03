@@ -64,9 +64,24 @@ socket.on('board', function (board_data) {
 
   $('#currentDimensions').text(dimensionsToString(board_data.dimensions));
 
+  function chordReveal(x, y) {
+    socket.emit('reveal', { x: x, y: y });
+    socket.emit('reveal', { x: x - 1, y: y - 1 });
+    socket.emit('reveal', { x: x - 1, y: y });
+    socket.emit('reveal', { x: x - 1, y: y + 1 });
+    socket.emit('reveal', { x: x, y: y - 1 });
+    socket.emit('reveal', { x: x, y: y + 1 });
+    socket.emit('reveal', { x: x + 1, y: y - 1 });
+    socket.emit('reveal', { x: x + 1, y: y });
+    socket.emit('reveal', { x: x + 1, y: y + 1 });
+  }
+
   var modified_squares = [];
   for (var y in board[0]) {
     for (var x in board) {
+      var leftMouseDown = false;
+      var rightMouseDown = false;
+
       $('#board').append($('<span class="square"></span>').prop('id', x + '-' + y).click(function () {
         if (isCurrentlyRevealMode())
           socket.emit('reveal', {
@@ -84,6 +99,25 @@ socket.on('board', function (board_data) {
           y: parseInt($(this).prop('id').split('-')[1])
         });
         return false;
+      }).on('mousedown', function (e) {
+        var button = e.originalEvent.button;
+        if (button == 0) {
+          leftMouseDown = true;
+        } else if (button == 2) {
+          rightMouseDown = true;
+        }
+      }).on('mouseup', function (e) {
+        var button = e.originalEvent.button;
+        if (leftMouseDown && rightMouseDown) {
+          chordReveal(parseInt($(this).prop('id').split('-')[0]), parseInt($(this).prop('id').split('-')[1]));
+        }
+        if (button == 0) {
+          leftMouseDown = false;
+        } else if (button == 1) {
+          chordReveal(parseInt($(this).prop('id').split('-')[0]), parseInt($(this).prop('id').split('-')[1]));
+        } else if (button == 2) {
+          rightMouseDown = false;
+        }
       }));
 
       if (board[x][y].flagged || board[x][y].revealed)
