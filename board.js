@@ -214,6 +214,10 @@ Board.prototype.reveal = function(x, y, username) {
 		y: y
 	});
 
+	// check if was a flag
+	if (this.squares[x][y].flagged)
+		this.flagCount--;
+
 	// lose detection
 	if (this.squares[x][y].mine) {
 		this.lost = true;
@@ -221,10 +225,6 @@ Board.prototype.reveal = function(x, y, username) {
 		this.squares[x][y].flagged = false;
 		this.numberOfHiddenSafeSquares--;
 	}
-
-	// check if was a flag
-	if (this.squares[x][y].flagged)
-		this.flagCount--;
 
 	// win detection
 	if (this.numberOfHiddenSafeSquares == 0) {
